@@ -41,7 +41,7 @@
   />
 
   
-  <title>cs log</title>
+  <title>Emoji Support - cs log</title>
 
   
   <meta name="theme-color" />
@@ -49,12 +49,8 @@
   
   
   
-  
-  <meta
-    name="description"
-    content="A personal blog"
-  />
-  <meta name="author" content="cs log" />
+  <meta name="description" content="Emoji can be enabled in a Hugo project in a number of ways." />
+  <meta name="author" content="lee.so" />
   
 
   
@@ -65,6 +61,12 @@
   
   <link rel="preload stylesheet" as="style" href="https://csbiy.github.io/main.min.css" />
 
+  
+  <script
+    defer
+    src="https://csbiy.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
   
 
   
@@ -91,25 +93,21 @@
 
   
   
-  <link
-    rel="alternate"
-    type="application/rss&#43;xml"
-    href="https://csbiy.github.io/index.xml"
-    title="cs log"
-  />
-  
 
   
   
   
   
   
-  <meta itemprop="name" content="">
-<meta itemprop="description" content="">
+  <meta itemprop="name" content="Emoji Support">
+<meta itemprop="description" content="Guide to emoji usage in Hugo"><meta itemprop="datePublished" content="2019-03-05T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2019-03-05T00:00:00+00:00" />
+<meta itemprop="wordCount" content="129">
+<meta itemprop="keywords" content="emoji," />
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Emoji Support"/>
+<meta name="twitter:description" content="Guide to emoji usage in Hugo"/>
 
   
   
@@ -206,95 +204,73 @@
     >
       
 
+<article>
+  <header class="mb-16">
+    <h1 class="!my-0 pb-2.5">Emoji Support</h1>
 
+    
+    <div class="text-sm antialiased opacity-60">
+      
+      <time>Mar 5, 2019</time>
+      
+      
+      
+      
+      <span class="mx-1">&middot;</span>
+      <span>lee.so</span>
+      
+    </div>
+    
+  </header>
 
+  <section><p>Emoji can be enabled in a Hugo project in a number of ways.</p>
+<p>The <a href="https://gohugo.io/functions/emojify/"><code>emojify</code></a> function can be called directly in templates or <a href="https://gohugo.io/templates/shortcode-templates/#inline-shortcodes">Inline Shortcodes</a>.</p>
+<p>To enable emoji globally, set <code>enableEmoji</code> to <code>true</code> in your site&rsquo;s <a href="https://gohugo.io/getting-started/configuration/">configuration</a> and then you can type emoji shorthand codes directly in content files; e.g.</p>
+<p><span class="nowrap"><span class="emojify">🙈</span> <code>:see_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙉</span> <code>:hear_no_evil:</code></span>  <span class="nowrap"><span class="emojify">🙊</span> <code>:speak_no_evil:</code></span></p>
+<br>
+<p>The <a href="http://www.emoji-cheat-sheet.com/">Emoji cheat sheet</a> is a useful reference for emoji shorthand codes.</p>
+<hr>
+<p><strong>N.B.</strong> The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>.emoji {
+</span></span><span style="display:flex;"><span>font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
+</span></span><span style="display:flex;"><span>}</span></span></code></pre></div></section>
 
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
   
-  <span
-    class="mb-2 ml-px inline-block text-[0.8rem] font-medium uppercase tracking-wider text-[#ff3b2d] opacity-70"
-    >Featured</span
-  >
   
-  <h2 class="!my-0 pb-1 font-bold !leading-none">Placeholder Text</h2>
-  <time class="text-sm antialiased opacity-60"
-    >Mar 9, 2019</time
-  >
-  <a class="absolute inset-0 text-[0]" href="https://csbiy.github.io/post/placeholder-text/">Placeholder Text</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
+  <footer class="mt-12 flex flex-wrap">
+     
+    <a
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="https://csbiy.github.io/tags/emoji"
+      >emoji</a
+    >
+    
+  </footer>
   
-  <h2 class="!my-0 pb-1 font-bold !leading-none">Markdown Syntax Guide</h2>
-  <time class="text-sm antialiased opacity-60"
-    >Mar 11, 2019</time
-  >
-  <a class="absolute inset-0 text-[0]" href="https://csbiy.github.io/post/markdown-syntax/">Markdown Syntax Guide</a>
-</section>
 
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
   
-  <h2 class="!my-0 pb-1 font-bold !leading-none">Rich Content</h2>
-  <time class="text-sm antialiased opacity-60"
-    >Mar 10, 2019</time
-  >
-  <a class="absolute inset-0 text-[0]" href="https://csbiy.github.io/post/rich-content/">Rich Content</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
   
-  <h2 class="!my-0 pb-1 font-bold !leading-none">Math Typesetting</h2>
-  <time class="text-sm antialiased opacity-60"
-    >Mar 8, 2019</time
-  >
-  <a class="absolute inset-0 text-[0]" href="https://csbiy.github.io/post/math-typesetting/">Math Typesetting</a>
-</section>
-
-
-
-
-
-<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
   
-  <h2 class="!my-0 pb-1 font-bold !leading-none">Emoji Support</h2>
-  <time class="text-sm antialiased opacity-60"
-    >Mar 5, 2019</time
-  >
-  <a class="absolute inset-0 text-[0]" href="https://csbiy.github.io/post/emoji-support/">Emoji Support</a>
-</section>
+  
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    
+    <a
+      class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+      href="https://csbiy.github.io/post/math-typesetting/"
+      ><span class="mr-1.5">←</span><span>Math Typesetting</span></a
+    >
+    
+    
+  </nav>
+  
+  
 
+  
+  
 
-
-
+  
+  
+</article>
 
 
     </main>
