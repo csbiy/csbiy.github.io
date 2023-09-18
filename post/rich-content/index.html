@@ -42,6 +42,7 @@
   style="--bg: #faf8f1"
   lang="en-us"
 >
+
   <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -117,14 +118,14 @@
   
   
   <meta itemprop="name" content="Rich Content">
-<meta itemprop="description" content="aaa"><meta itemprop="datePublished" content="2020-07-10T00:00:00+00:00" />
+<meta itemprop="description" content="sample"><meta itemprop="datePublished" content="2020-07-10T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-07-10T00:00:00+00:00" />
 <meta itemprop="wordCount" content="35">
-<meta itemprop="keywords" content="database," />
+<meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Rich Content"/>
-<meta name="twitter:description" content="aaa"/>
+<meta name="twitter:description" content="sample"/>
 
   
   
@@ -267,19 +268,18 @@
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube-nocookie.com/embed/ZJthWmvUzzc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div></section>
+</div>
+
+<script src="https://utteranc.es/client.js"
+        repo="csbiy/blog-portfolio"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script></section>
 
     
-    
-    <footer class="mt-12 flex flex-wrap">
-         
-        <a
-                class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
-                href="https://csbiy.github.io/tags/database"
-        >database</a
-        >
-        
-    </footer>
     
 
     
@@ -296,6 +296,7 @@
 </article>
 
 
+      
     </main>
 
     <footer
@@ -308,14 +309,21 @@
   <div>
     Contact : katd216@gmail.com
   </div>
+  
 </footer>
 
 
   <script>
-    document.querySelector("#writings").addEventListener('click',(e)=>{
+    
+    if(location.href.endsWith('writing')){
       document.querySelector('#aboutme').style.display="None";
       document.querySelectorAll('.postings').forEach((e)=>e.style.display="block");
+    }
+    document.querySelector("#writings").addEventListener('click',(e)=>{
+      location.href = '/?writing'
     })
+
+    
   </script>
   </body>
 </html>

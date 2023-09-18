@@ -42,6 +42,7 @@
   style="--bg: #faf8f1"
   lang="en-us"
 >
+
   <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -276,6 +277,7 @@
 </article>
 
 
+      
     </main>
 
     <footer
@@ -288,14 +290,21 @@
   <div>
     Contact : katd216@gmail.com
   </div>
+  
 </footer>
 
 
   <script>
-    document.querySelector("#writings").addEventListener('click',(e)=>{
+    
+    if(location.href.endsWith('writing')){
       document.querySelector('#aboutme').style.display="None";
       document.querySelectorAll('.postings').forEach((e)=>e.style.display="block");
+    }
+    document.querySelector("#writings").addEventListener('click',(e)=>{
+      location.href = '/?writing'
     })
+
+    
   </script>
   </body>
 </html>
