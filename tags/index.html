@@ -264,11 +264,14 @@
     </main>
 
     <footer
-  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60"
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60 border-top"
 >
   <div class="mr-auto">
     &copy; 2023
     <a class="link" href="https://csbiy.github.io/">cs log</a>
+  </div>
+  <div>
+    Contact : katd216@gmail.com
   </div>
 </footer>
 
@@ -276,9 +279,7 @@
   <script>
     document.querySelector("#writings").addEventListener('click',(e)=>{
       document.querySelector('#aboutme').style.display="None";
-
       document.querySelectorAll('.postings').forEach((e)=>e.style.display="block");
-      console.log(e);
     })
   </script>
   </body>
