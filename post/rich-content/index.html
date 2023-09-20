@@ -52,7 +52,7 @@
   />
 
   
-  <title>Rich Content - cs log</title>
+  <title>함수형 프로그래밍 - cs log</title>
 
   
   <meta name="theme-color" />
@@ -60,7 +60,17 @@
   
   
   
-  <meta name="description" content="Hugo ships with several Built-in Shortcodes for rich content, along with a Privacy Config and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.
+  <meta name="description" content="
+
+순수 함수 : 같은 인자를 넣으면 항상 같은 결과가 반환되는 프로그래밍 스타일.
+의도치 않는 사이드 이펙트를 최소화하는 방식
+
+
+액션 : 실행 시점이나 횟수에 의존하는 함수, 다른 말로 부수 효과 , 순수하지 않은 함수라고 부른다. 예를 들면 이메일 발송 , DB 쿼리 모두 액션에 속한다.
+
+
+계산 : 입력값으로 출력값을 만드는 것 .  즉 같은 입력값을 가지고 계산하면 항상 같은 결과값을 내는 함수로 순수함수라고 부른다. 예를 들면 최댓값 찾기. 이메일 유효성 검증은 여러번 실행하여도 동일한 결과값을 낸다.
+
 " />
   <meta name="author" content="cs" />
   
@@ -117,14 +127,14 @@
   
   
   
-  <meta itemprop="name" content="Rich Content">
+  <meta itemprop="name" content="함수형 프로그래밍">
 <meta itemprop="description" content="sample"><meta itemprop="datePublished" content="2020-07-10T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2020-07-10T00:00:00+00:00" />
-<meta itemprop="wordCount" content="35">
+<meta itemprop="wordCount" content="75">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Rich Content"/>
+<meta name="twitter:title" content="함수형 프로그래밍"/>
 <meta name="twitter:description" content="sample"/>
 
   
@@ -245,7 +255,7 @@
 
 <article>
     <header class="mb-16">
-        <h1 class="!my-0 pb-2.5">Rich Content</h1>
+        <h1 class="!my-0 pb-2.5">함수형 프로그래밍</h1>
 
         
         <div class="text-sm antialiased opacity-60">
@@ -262,14 +272,23 @@
         
     </header>
 
-    <section><p>Hugo ships with several <a href="https://gohugo.io/content-management/shortcodes/#use-hugos-built-in-shortcodes">Built-in Shortcodes</a> for rich content, along with a <a href="https://gohugo.io/about/hugo-and-gdpr/">Privacy Config</a> and a set of Simple Shortcodes that enable static and no-JS versions of various social media embeds.</p>
-<h2 id="heading"></h2>
-<h2 id="youtube-privacy-enhanced-shortcode">YouTube Privacy Enhanced Shortcode</h2>
-
+    <section><ul>
+<li>
+<p>순수 함수 : 같은 인자를 넣으면 항상 같은 결과가 반환되는 프로그래밍 스타일.
+의도치 않는 사이드 이펙트를 최소화하는 방식</p>
+</li>
+<li>
+<p>액션 : 실행 시점이나 횟수에 의존하는 함수, 다른 말로 부수 효과 , 순수하지 않은 함수라고 부른다. 예를 들면 이메일 발송 , DB 쿼리 모두 액션에 속한다.</p>
+</li>
+<li>
+<p>계산 : 입력값으로 출력값을 만드는 것 .  즉 같은 입력값을 가지고 계산하면 항상 같은 결과값을 내는 함수로 순수함수라고 부른다. 예를 들면 최댓값 찾기. 이메일 유효성 검증은 여러번 실행하여도 동일한 결과값을 낸다.</p>
+</li>
+</ul>
+<!-- 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://www.youtube-nocookie.com/embed/ZJthWmvUzzc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
-
+ -->
 <div style="margin-top:100px;"></div>
 <script src="https://utteranc.es/client.js"
         repo="csbiy/csbiy.github.io"
