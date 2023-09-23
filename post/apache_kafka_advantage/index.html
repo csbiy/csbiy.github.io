@@ -1,0 +1,409 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>카프카의 주요 개념 - cs log</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="카프카의 탄생 배경 카프카 등장 이전에는 단방향 통신 방식을 주로 사용하였으며, 이는 application 간 1:1 직접적으로 연결되는 방식이다.
+아키텍쳐가 거대해짐에 따라 소스 애플리케이션과 타겟 애플리케이션간 연결되는 라인이 늘어나기 시작함으로 장애 관리가 어려워지고 복잡성이 증가한다.
+즉 소스 애플리케이션에서 장애가 발생하면 이는 타겟 애플리케이션에 그대로 영향을 미친다.
+카프카를 중앙에 배치함으로서 소스 애플리케이션과 타겟 애플리케이션간 의존도를 최소화할 수 있다. 즉 어느 한쪽에서 이슈가 발생하더라도 장애가 전파되지 않는 구조이다. [1]카프카 아키텍쳐 구조 카프카의 장점 높은 처리량 대량의 데이터를 송수신할때, 네트워크 통신 횟수를 최소한으로 줄이기 위해서 묶어서 송신한다." />
+  <meta name="author" content="cs" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://csbiy.github.io/main.min.css" />
+  <link rel="preload stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"/>
+
+  <link rel="preload stylesheet" href="./../../assets/custom.css"/>
+  
+  <script
+    defer
+    src="https://csbiy.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="https://csbiy.github.io/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/b60e88df064971276ea7059122b3ebaa?s=160&amp;d=identicon" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="https://csbiy.github.io/github.svg" />
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="https://csbiy.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://csbiy.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.118.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="카프카의 주요 개념">
+<meta itemprop="description" content="sample"><meta itemprop="datePublished" content="2021-07-11T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-07-11T00:00:00+00:00" />
+<meta itemprop="wordCount" content="436">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="카프카의 주요 개념"/>
+<meta name="twitter:description" content="sample"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold head"
+      href="https://csbiy.github.io/"
+      >cs log</a>
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden "
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    console.log("he")
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+    
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal head"
+        href=""
+        ></a
+      >
+      
+      <a id="writings"
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal head"
+        >writings</a
+      >
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/csbiy"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 dark:prose-invert"
+    >
+      
+
+<article>
+    <header class="mb-16">
+        <h1 class="!my-0 pb-2.5">카프카의 주요 개념</h1>
+
+        
+        <div class="text-sm antialiased opacity-60">
+            
+            <time>Jul 11, 2021</time>
+            
+            
+            
+            
+            <span class="mx-1">&middot;</span>
+            <span>cs</span>
+            
+        </div>
+        
+    </header>
+
+    <section><h2 id="카프카의-탄생-배경">카프카의 탄생 배경</h2>
+<ul>
+<li>
+<p>카프카 등장 이전에는 단방향 통신 방식을 주로 사용하였으며, 이는 application 간 1:1 직접적으로 연결되는 방식이다.</p>
+</li>
+<li>
+<p>아키텍쳐가 거대해짐에 따라 소스 애플리케이션과 타겟 애플리케이션간 연결되는 라인이 늘어나기 시작함으로 장애 관리가 어려워지고 복잡성이 증가한다.</p>
+</li>
+</ul>
+<p>즉 소스 애플리케이션에서 장애가 발생하면 이는 타겟 애플리케이션에 그대로 영향을 미친다.</p>
+<ul>
+<li>카프카를 중앙에 배치함으로서 소스 애플리케이션과 타겟 애플리케이션간 의존도를 최소화할 수 있다. 즉 어느 한쪽에서 이슈가 발생하더라도 장애가 전파되지 않는 구조이다.</li>
+</ul>
+<figure>
+        <img src="https://www.tibco.com/sites/tibco/files/media_entity/2020-10/apache-kafka-diagram.svg">
+        <figcaption>[1]카프카 아키텍쳐 구조</figcaption>
+</figure>
+<h2 id="카프카의-장점">카프카의 장점</h2>
+<h3 id="높은-처리량">높은 처리량</h3>
+<p>대량의 데이터를 송수신할때, 네트워크 통신 횟수를 최소한으로 줄이기 위해서 묶어서 송신한다. 즉 배치 처리가 가능하다.
+파티션 단위로 병렬처리가 가능하다. 파티션 별로 데이터를 분배하고 , 파티션 개수만큼 Consumer 개수를 늘려서 동일 시간당 데이터 처리를 늘리는 방식이다.</p>
+<h3 id="확장성">확장성</h3>
+<p>트래픽에 따라 브로커의 개수를 조정하는 식으로 Scaling이 가능하다. 트래픽이 적을때는 최소한의 개수로 운영하다가 트래픽이 많아지면 브로커의 개수를 늘려서 대응할 수 있다.</p>
+<h3 id="영속성">영속성</h3>
+<p>카프카에서는 다른 메시지 큐와 다르게 <strong>파일 시스템에 데이터를 저장</strong>한다. 따라서 브로커가 비정상적으로 종료되더라도 소실되지 않는다. <br></p>
+<p>매번 디스크에 읽기 요청이 나가는 것은 아니며,운영체제 수준에서 최적화 기법을 사용한다. page cache 를 통해 영구 저장장치에 대한 접근 비용을 줄일 수 있다. 한번 읽은 page는 memory에 cache하고 있다가 읽기 요청이 들어오면 Disk까지 I/O요청이 나가지 않고, memory에서 바로 읽기가 가능하다.</p>
+<p>당연히 Consumer가 데이터를 들고 가더라도 데이터는 삭제되지 않는다. 데이터 삭제는 오직 브로커에서만 가능하다. 브로커에서는 다양한 데이터 삭제 정책이 존재한다. (용량 기반/시간 기반)</p>
+<p>다음과 같이 데이터 삭제 정책을 브로커에 지정할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>// 카프카 브로커의 server.properties 설정 파일 
+</span></span><span style="display:flex;"><span>log.retention.bytes <span style="color:#f92672">=</span> <span style="color:#e6db74">${</span>임계치바이트수<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>log.retention.ms <span style="color:#f92672">=</span> <span style="color:#e6db74">${</span>임계치시간<span style="color:#e6db74">}</span>
+</span></span></code></pre></div><h3 id="고가용성">고가용성</h3>
+<p>카프카는 1대로 운영할수도 있지만, 일반적으로 3대 이상의 broker를 구성해 cluster를 구축하여 사용한다. 즉 일부 서버에서 장얘가 발생하더라도 서비스 중단없이 데이터를 처리할 수 있다.</p>
+<p>고가용성을 보장하고자 카프카는 수신받은 데이터를 복제하여서 여러 서버에 분산 저장한다. 즉 한 쪽에서 소실되더라도 나머지 서버에서 처리가 가능하다.</p>
+<ul>
+<li>데이터 복제 방식</li>
+</ul>
+<p>카프카에서는 <strong>파티션 단위</strong>로 데이터를 복제한다. 따라서 파티션을 생성할때에도 replication-factor 인자를 통해 몇개의 파티션에 데이터가 동일하게 복제될것인지 설정할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ kafka-topics.sh 
+</span></span><span style="display:flex;"><span>--create 
+</span></span><span style="display:flex;"><span>--bootstrap-server localhost:9092 
+</span></span><span style="display:flex;"><span>--replication-factor <span style="color:#e6db74">${</span>복제개수<span style="color:#e6db74">}</span> 
+</span></span><span style="display:flex;"><span>--partitions <span style="color:#e6db74">${</span>파티션개수<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>--topic <span style="color:#e6db74">${</span>토픽명<span style="color:#e6db74">}</span>
+</span></span></code></pre></div><p>당연히 복제가능한 최대개수는 카프카 브로커 개수만큼이다.</p>
+<ul>
+<li>Leader Partition 과 Follower Partition</li>
+</ul>
+<p>정리하면 토픽은 일련의 데이터 스트림이다. 그리고 이 토픽은 여러 개의 파티션으로 구성될 수 있다.
+각 파티션은 브로커 서버에 위치하며, leader 와 follower로 구분된다.</p>
+<p>leader는 application(consumer/producer)과 직접 통신하는 파티션이고, follower는 나머지 복제본을 들고 있는 파티션을 지칭한다.</p>
+<figure>
+        <img src="https://cdn.jsdelivr.net/gh/b0xt/sobyte-images/2022/02/13/85a82fa55b654a24971b535580b67ac8.png">
+        <figcaption>[1]Leader Partition 과 Follower Partition 구조</figcaption>
+</figure>
+<p>follower는 leader patition과 offset을 비교해서, 자신이 들고 있는 offset과 차이가 나는 경우에는 leader로부터 데이터를 복제해온다.</p>
+<p>만약 leader가 장애가 발생하면 나머지 follower중에 하나의 서버가 leader가 된다.</p>
+<p>그러면 어떻게 leader가 장애가 발생하였는지 탐지하고 follower중에 하나를 leader로 승격(?)시킬까?
+카프카에서는 해당 역할을 담당하는 Controller Component가 존재한다.</p>
+<ul>
+<li>Controller</li>
+</ul>
+<p>브로커중 한 대가 Controller의 역할을 수행한다.  <br>
+일종의 health-check기능을 하는 셈이다. <br>
+다른 브로커들의 상태를 지속적으로 체크하고, 브로커 한대가 장애가 발생해서 cluster에서 빠지게 되면, 해당 브로커에 존재하는 leader 파티션을 다른 broker가 수행할 수 있도록 한다.</p>
+<h3 id="reference">Reference</h3>
+<p>[1] <a href="https://www.tibco.com/ko/reference-center/what-is-apache-kafka">https://www.tibco.com/ko/reference-center/what-is-apache-kafka</a></p>
+<p>[2] <a href="https://www.sobyte.net/post/2022-02/kafka-architecture/">https://www.sobyte.net/post/2022-02/kafka-architecture/</a></p>
+<div style="margin-top:100px;"></div>
+<script src="https://utteranc.es/client.js"
+        repo="csbiy/csbiy.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script></section>
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+        
+        <a
+                class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+                href="https://csbiy.github.io/post/apache_kafka_topic_partition/"
+        ><span class="mr-1.5">←</span><span>카프카의 등장배경과 장점</span></a
+        >
+        
+        
+        <a
+                class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+                href="https://csbiy.github.io/post/functional_programmming/"
+        ><span>함수형 프로그래밍</span><span class="ml-1.5">→</span></a
+        >
+        
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+</article>
+
+
+      
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60 border-top"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="https://csbiy.github.io/">cs log</a>
+  </div>
+  <div>
+    Contact : katd216@gmail.com
+  </div>
+  
+</footer>
+
+
+  <script>
+    
+    if(location.href.endsWith('writing')){
+      document.querySelector('#aboutme').style.display="None";
+      document.querySelectorAll('.postings').forEach((e)=>e.style.display="block");
+    }
+    document.querySelector("#writings").addEventListener('click',(e)=>{
+      location.href = '/?writing'
+    })
+
+    
+  </script>
+  </body>
+</html>

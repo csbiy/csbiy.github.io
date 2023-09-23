@@ -9,10 +9,19 @@
     <lastBuildDate>Sun, 11 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://csbiy.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>카프카의 등장배경과 장점</title>
-      <link>https://csbiy.github.io/post/apache_kafka/</link>
+      <link>https://csbiy.github.io/post/apache_kafka_topic_partition/</link>
       <pubDate>Sun, 11 Jul 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://csbiy.github.io/post/apache_kafka/</guid>
+      <guid>https://csbiy.github.io/post/apache_kafka_topic_partition/</guid>
+      <description>카프카 데이터 저장 방식 [1]카프카 아키텍쳐 구조 Reference [1] https://medium.com/event-driven-utopia/understanding-kafka-topic-partitions-ae40f80552e8</description>
+    </item>
+    
+    <item>
+      <title>카프카의 주요 개념</title>
+      <link>https://csbiy.github.io/post/apache_kafka_advantage/</link>
+      <pubDate>Sun, 11 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://csbiy.github.io/post/apache_kafka_advantage/</guid>
       <description>카프카의 탄생 배경 카프카 등장 이전에는 단방향 통신 방식을 주로 사용하였으며, 이는 application 간 1:1 직접적으로 연결되는 방식이다.
 아키텍쳐가 거대해짐에 따라 소스 애플리케이션과 타겟 애플리케이션간 연결되는 라인이 늘어나기 시작함으로 장애 관리가 어려워지고 복잡성이 증가한다.
 즉 소스 애플리케이션에서 장애가 발생하면 이는 타겟 애플리케이션에 그대로 영향을 미친다.
