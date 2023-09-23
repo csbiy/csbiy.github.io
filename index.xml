@@ -6,11 +6,11 @@
     <description>Recent content on cs log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Jul 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://csbiy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 11 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://csbiy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>카프카</title>
+      <title>카프카의 등장배경과 장점</title>
       <link>https://csbiy.github.io/post/apache_kafka/</link>
-      <pubDate>Fri, 10 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 11 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://csbiy.github.io/post/apache_kafka/</guid>
       <description>카프카의 탄생 배경 카프카 등장 이전에는 단방향 통신 방식을 주로 사용하였으며, 이는 application 간 1:1 직접적으로 연결되는 방식이다.
