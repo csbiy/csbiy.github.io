@@ -317,7 +317,7 @@
 <p>leader는 application(consumer/producer)과 직접 통신하는 파티션이고, follower는 나머지 복제본을 들고 있는 파티션을 지칭한다.</p>
 <figure>
         <img src="https://cdn.jsdelivr.net/gh/b0xt/sobyte-images/2022/02/13/85a82fa55b654a24971b535580b67ac8.png">
-        <figcaption>[1]Leader Partition 과 Follower Partition 구조</figcaption>
+        <figcaption>[2]Leader Partition 과 Follower Partition 구조</figcaption>
 </figure>
 <p>follower는 leader patition과 offset을 비교해서, 자신이 들고 있는 offset과 차이가 나는 경우에는 leader로부터 데이터를 복제해온다.</p>
 <p>만약 leader가 장애가 발생하면 나머지 follower중에 하나의 서버가 leader가 된다.</p>
