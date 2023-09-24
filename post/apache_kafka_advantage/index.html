@@ -122,7 +122,7 @@
   <meta itemprop="name" content="카프카의 주요 개념">
 <meta itemprop="description" content="sample"><meta itemprop="datePublished" content="2021-07-11T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-07-11T00:00:00+00:00" />
-<meta itemprop="wordCount" content="436">
+<meta itemprop="wordCount" content="509">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -296,7 +296,7 @@
 </span></span><span style="display:flex;"><span>log.retention.bytes <span style="color:#f92672">=</span> <span style="color:#e6db74">${</span>임계치바이트수<span style="color:#e6db74">}</span>
 </span></span><span style="display:flex;"><span>log.retention.ms <span style="color:#f92672">=</span> <span style="color:#e6db74">${</span>임계치시간<span style="color:#e6db74">}</span>
 </span></span></code></pre></div><h3 id="고가용성">고가용성</h3>
-<p>카프카는 1대로 운영할수도 있지만, 일반적으로 3대 이상의 broker를 구성해 cluster를 구축하여 사용한다. 즉 일부 서버에서 장얘가 발생하더라도 서비스 중단없이 데이터를 처리할 수 있다.</p>
+<p>카프카는 1대로 운영할수도 있지만, 일반적으로 3대 이상의 broker를 구성해 cluster를 구축하여 사용한다. 그래야만 일부 서버에서 장얘가 발생하더라도 서비스 중단없이 데이터를 처리할 수 있다.</p>
 <p>고가용성을 보장하고자 카프카는 수신받은 데이터를 복제하여서 여러 서버에 분산 저장한다. 즉 한 쪽에서 소실되더라도 나머지 서버에서 처리가 가능하다.</p>
 <ul>
 <li>데이터 복제 방식</li>
@@ -329,6 +329,11 @@
 <p>브로커중 한 대가 Controller의 역할을 수행한다.  <br>
 일종의 health-check기능을 하는 셈이다. <br>
 다른 브로커들의 상태를 지속적으로 체크하고, 브로커 한대가 장애가 발생해서 cluster에서 빠지게 되면, 해당 브로커에 존재하는 leader 파티션을 다른 broker가 수행할 수 있도록 한다.</p>
+<ul>
+<li>Coordinator</li>
+</ul>
+<p>또 다른 브로커 서버가 수행하는 역할 중 하나는 &ldquo;Coordinator&rdquo; 역할이다. Coordinator는 Consumer Group의 상태를 확인하고 Partition과 Consumer를 매칭시키는 역할을 한다.  여기서 Consumer Group이란 말 그대로 하나 이상으로 이루어진 Consumer 애플리케이션을 지칭한다. Consumer가 그룹에서 제외되는 경우, 기존에 연결된 파티션은 또 다른 Consumer로 매칭되야 한다.</p>
+<p>예를 들어서, 4개의 파티션이 4개의 Consumer와 각각 1:1매핑된 상황에서 Consumer가 의도하거나 의도치 않은 상황으로 제외되었다면 매칭되지 않은 파티션이 하나 나올 것이다. 이때 <strong>Rebalancing</strong> 이라는 과정이 일어나 파티션을 Consumer로 할당해준다.</p>
 <h3 id="reference">Reference</h3>
 <p>[1] <a href="https://www.tibco.com/ko/reference-center/what-is-apache-kafka">https://www.tibco.com/ko/reference-center/what-is-apache-kafka</a></p>
 <p>[2] <a href="https://www.sobyte.net/post/2022-02/kafka-architecture/">https://www.sobyte.net/post/2022-02/kafka-architecture/</a></p>
@@ -350,12 +355,6 @@
     
     
     <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
-        
-        <a
-                class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
-                href="https://csbiy.github.io/post/apache_kafka_topic_partition/"
-        ><span class="mr-1.5">←</span><span>카프카의 등장배경과 장점</span></a
-        >
         
         
         <a

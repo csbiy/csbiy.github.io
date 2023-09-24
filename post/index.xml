@@ -8,15 +8,6 @@
     <language>en-us</language>
     <lastBuildDate>Sun, 11 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://csbiy.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>카프카의 등장배경과 장점</title>
-      <link>https://csbiy.github.io/post/apache_kafka_topic_partition/</link>
-      <pubDate>Sun, 11 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://csbiy.github.io/post/apache_kafka_topic_partition/</guid>
-      <description>카프카 데이터 저장 방식 [1]카프카 아키텍쳐 구조 Reference [1] https://medium.com/event-driven-utopia/understanding-kafka-topic-partitions-ae40f80552e8</description>
-    </item>
-    
-    <item>
       <title>카프카의 주요 개념</title>
       <link>https://csbiy.github.io/post/apache_kafka_advantage/</link>
       <pubDate>Sun, 11 Jul 2021 00:00:00 +0000</pubDate>
