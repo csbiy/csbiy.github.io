@@ -117,9 +117,9 @@
   
   
   <meta itemprop="name" content="Priority Queue">
-<meta itemprop="description" content="우선순위 큐란? 큐와 다르게 FIFO(선입선출) 하는 구조가 아니라 우선순위가 높은 순서에 따라 원소를 반환한다. 큐도 먼저 삽입된 원소가 우선순위가 더 높은 일종의 우선순위큐로도 생각해볼 수 있다. 보통 이진힙(Binary Heap)으로 구현된다. 이진힙(Binary Heap) 완전이진트리로서 부모노드의 우선순위가 자식노드의 우선순위보다 높은 자료구조 Minimum Heap(최소힙) : 키값이 작을수록 높은 우선순위를 가짐 Maximum Heap(최대힙) : 키값이 클수록 높은 우선순위를 가짐 이진힙의 구현 1차원 리스트를 활용해 구현할 수 있다. 완전이진트리의 노드를 레벨순회(Level-Order Traversal) 방향으로 배열에 차례대로 저장한다."><meta itemprop="datePublished" content="2019-03-11T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2019-03-11T00:00:00+00:00" />
-<meta itemprop="wordCount" content="467">
+<meta itemprop="description" content="우선순위 큐란? 큐와 다르게 FIFO(선입선출) 하는 구조가 아니라 우선순위가 높은 순서에 따라 원소를 반환한다. 큐도 먼저 삽입된 원소가 우선순위가 더 높은 일종의 우선순위큐로도 생각해볼 수 있다. 보통 이진힙(Binary Heap)으로 구현된다. 이진힙(Binary Heap) 완전이진트리로서 부모노드의 우선순위가 자식노드의 우선순위보다 높은 자료구조 Minimum Heap(최소힙) : 키값이 작을수록 높은 우선순위를 가짐 Maximum Heap(최대힙) : 키값이 클수록 높은 우선순위를 가짐 이진힙의 구현 1차원 리스트를 활용해 구현할 수 있다. 완전이진트리의 노드를 레벨순회(Level-Order Traversal) 방향으로 배열에 차례대로 저장한다.">
+
+<meta itemprop="wordCount" content="478">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -249,8 +249,6 @@
         
         <div class="text-sm antialiased opacity-60">
             
-            <time>Mar 11, 2019</time>
-            
             
             
             
@@ -303,7 +301,7 @@
 </ul>
 <h3 id="이진힙의-구현-예시">이진힙의 구현 예시</h3>
 <ul>
-<li>이진힙을 1차원 리스트를 활용해 구현하면 다음과 같다.</li>
+<li>이진힙을 1차원 리스트를 활용해 구현하면 다음과 같다. (최소 힙 구현이며, 최대 힙은 각 원소의 -1을 곱해주면 구현이 가능하다)</li>
 <li>insert시 upheap 연산을 수행하면서, 리프 노드에서 부모노드 방향으로 우선순위 정합성을 지키도록 연산이 이루어진다.</li>
 <li>pop시 downheap 연산을 수행하면서, 루트노드에서 리프노드 방향으로 우선순위 정합성을 지키도록 연산이 이루어진다.</li>
 </ul>
@@ -396,7 +394,15 @@
 </ul>
 <h3 id="reference">Reference</h3>
 <p>[1] <a href="https://runestone.academy/ns/books/published/pythonds/Trees/BinaryHeapImplementation.html">https://runestone.academy/ns/books/published/pythonds/Trees/BinaryHeapImplementation.html</a></p>
-</section>
+<div style="margin-top:100px;"></div>
+<script src="https://utteranc.es/client.js"
+        repo="csbiy/csbiy.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script></section>
 
     
     
