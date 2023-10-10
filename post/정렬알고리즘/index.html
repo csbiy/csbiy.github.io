@@ -1,0 +1,495 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>정렬 알고리즘 정리 - cs log</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="정렬 알고리즘의 종류 정렬 알고리즘은 버블 정렬, 선택 정렬, 삽입 정렬, 퀵 정렬, 병합 정렬, 기수 정렬로 나뉜다. 이 중 퀵 정렬이 가장 빈번히 사용된다. 종류 시간복잡도 버블 정렬 O(n2) 선택 정렬 O(n2) 삽입 정렬 O(n2) 퀵 정렬 O(nlogn) 버블 정렬 두 인접한 데이터를 비교해 swap하는 방식으로 정렬하는 방법 비교할 루프 범위를 지정한다. 인접한 데이터를 비교한다. swap 조건에 부합하면, swap연산을 수행한다. 2~3번 과정을 루프 범위 동안 반복한다. 정렬된 영역을 제외하고 1~4번 과정을 반복한다." />
+  <meta name="author" content="cs" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://csbiy.github.io/main.min.css" />
+  <link rel="preload stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"/>
+
+  <link rel="preload stylesheet" href="./../../assets/custom.css"/>
+  
+  <script
+    defer
+    src="https://csbiy.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="https://csbiy.github.io/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/b60e88df064971276ea7059122b3ebaa?s=160&amp;d=identicon" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="https://csbiy.github.io/github.svg" />
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="https://csbiy.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://csbiy.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.118.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="정렬 알고리즘 정리">
+<meta itemprop="description" content="정렬 알고리즘의 종류 정렬 알고리즘은 버블 정렬, 선택 정렬, 삽입 정렬, 퀵 정렬, 병합 정렬, 기수 정렬로 나뉜다. 이 중 퀵 정렬이 가장 빈번히 사용된다. 종류 시간복잡도 버블 정렬 O(n2) 선택 정렬 O(n2) 삽입 정렬 O(n2) 퀵 정렬 O(nlogn) 버블 정렬 두 인접한 데이터를 비교해 swap하는 방식으로 정렬하는 방법 비교할 루프 범위를 지정한다. 인접한 데이터를 비교한다. swap 조건에 부합하면, swap연산을 수행한다. 2~3번 과정을 루프 범위 동안 반복한다. 정렬된 영역을 제외하고 1~4번 과정을 반복한다."><meta itemprop="datePublished" content="2020-11-05T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2020-11-05T00:00:00+00:00" />
+<meta itemprop="wordCount" content="526">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="정렬 알고리즘 정리"/>
+<meta name="twitter:description" content="정렬 알고리즘의 종류 정렬 알고리즘은 버블 정렬, 선택 정렬, 삽입 정렬, 퀵 정렬, 병합 정렬, 기수 정렬로 나뉜다. 이 중 퀵 정렬이 가장 빈번히 사용된다. 종류 시간복잡도 버블 정렬 O(n2) 선택 정렬 O(n2) 삽입 정렬 O(n2) 퀵 정렬 O(nlogn) 버블 정렬 두 인접한 데이터를 비교해 swap하는 방식으로 정렬하는 방법 비교할 루프 범위를 지정한다. 인접한 데이터를 비교한다. swap 조건에 부합하면, swap연산을 수행한다. 2~3번 과정을 루프 범위 동안 반복한다. 정렬된 영역을 제외하고 1~4번 과정을 반복한다."/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold head"
+      href="https://csbiy.github.io/"
+      >cs log</a>
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden "
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    console.log("he")
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+    
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal head"
+        href=""
+        ></a
+      >
+      
+      <a id="writings"
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal head"
+        >writings</a
+      >
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/csbiy"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 dark:prose-invert"
+    >
+      
+
+<article>
+    <header class="mb-16">
+        <h1 class="!my-0 pb-2.5">정렬 알고리즘 정리</h1>
+
+        
+        <div class="text-sm antialiased opacity-60">
+            
+            <time>Nov 5, 2020</time>
+            
+            
+            
+            
+            <span class="mx-1">&middot;</span>
+            <span>cs</span>
+            
+        </div>
+        
+    </header>
+
+    <section><h2 id="정렬-알고리즘의-종류">정렬 알고리즘의 종류</h2>
+<ul>
+<li>정렬 알고리즘은 버블 정렬, 선택 정렬, 삽입 정렬, 퀵 정렬, 병합 정렬, 기수 정렬로 나뉜다.</li>
+<li>이 중 퀵 정렬이 가장 빈번히 사용된다.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>종류</th>
+<th>시간복잡도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>버블 정렬</td>
+<td>O(n<sup>2</sup>)</td>
+</tr>
+<tr>
+<td>선택 정렬</td>
+<td>O(n<sup>2</sup>)</td>
+</tr>
+<tr>
+<td>삽입 정렬</td>
+<td>O(n<sup>2</sup>)</td>
+</tr>
+<tr>
+<td>퀵 정렬</td>
+<td>O(nlogn)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="버블-정렬">버블 정렬</h3>
+<ul>
+<li>두 인접한 데이터를 비교해 swap하는 방식으로 정렬하는 방법</li>
+</ul>
+<ol>
+<li>비교할 루프 범위를 지정한다.</li>
+<li>인접한 데이터를 비교한다.</li>
+<li>swap 조건에 부합하면, swap연산을 수행한다.</li>
+<li>2~3번 과정을 루프 범위 동안 반복한다.</li>
+<li>정렬된 영역을 제외하고 1~4번 과정을 반복한다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">bubbleSort</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> input<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> input<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// i : 비교할 루프 범위, 즉 i번쨰 원소까지는 정렬됨을 보장한다. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> input<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">;</span> j <span style="color:#f92672">&gt;</span> i<span style="color:#f92672">;</span> j<span style="color:#f92672">--)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>input<span style="color:#f92672">[</span>j<span style="color:#f92672">-</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&gt;</span> input<span style="color:#f92672">[</span>j<span style="color:#f92672">])</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                swap<span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> j<span style="color:#f92672">-</span>1<span style="color:#f92672">,</span> j<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">swap</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> input<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> tmp <span style="color:#f92672">=</span> input<span style="color:#f92672">[</span>x<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>    input<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> input<span style="color:#f92672">[</span>y<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>    input<span style="color:#f92672">[</span>y<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> tmp<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>구현은 간단하지만 시간 복잡도 O(n<sup>2</sup>)으로 왠만한 알고리즘 문제에서는 타임아웃 에러가 발생한다.</li>
+</ul>
+<h3 id="선택-정렬">선택 정렬</h3>
+<ul>
+<li>최솟값을 선택해, 정렬되지 않은 범위의 제일 앞 위치로 swap 한다.</li>
+</ul>
+<ol>
+<li>남은 정렬 부분에서 최솟값을 찾는다.</li>
+<li>남은 정렬 부분에서 가장 앞의 원소와 swap한다.</li>
+<li>남은 정렬 부분의 위치를 변경한다. (한칸줄인다.)</li>
+<li>1~3을 반복하여 남은 정렬부분이 사라지도록 한다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">selectionSort</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> input<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> input<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> min <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">MAX_VALUE</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> minIndex <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * i번쨰 이후를 남은 정렬 부분이라고 하였을때, i~마지막원소까지 최솟값을 찾고, 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         * i번쨰 원소와 swap한다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span> j <span style="color:#f92672">&lt;</span> input<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> j<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>input<span style="color:#f92672">[</span>j<span style="color:#f92672">]</span> <span style="color:#f92672">&lt;</span> min<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                min <span style="color:#f92672">=</span> input<span style="color:#f92672">[</span>j<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>                minIndex <span style="color:#f92672">=</span> j<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        swap<span style="color:#f92672">(</span>input<span style="color:#f92672">,</span> minIndex<span style="color:#f92672">,</span> i<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="삽입-정렬">삽입 정렬</h3>
+<ul>
+<li>이미 정렬된 데이터 범위에 정렬되지 않은 데이터를 삽입시켜 정렬하는 방식</li>
+</ul>
+<ol>
+<li>현재 index에 있는 데이터 값을 선택한다.</li>
+<li>현재 선택한 데이터가 정렬된 데이터 범위에 삽입될 위치를 탐색한다.</li>
+<li>삽입 위치부터 index까지 shift연산을 수행한다.</li>
+<li>index를 증가시킨다.</li>
+<li>전체 데이터 크기만큼 index가 커질떄까지 반복한다.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">insertionSort</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> input<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> input<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> current <span style="color:#f92672">=</span> input<span style="color:#f92672">[</span>i<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> i<span style="color:#f92672">;</span> j <span style="color:#f92672">-</span> 1 <span style="color:#f92672">&gt;=</span> 0<span style="color:#f92672">;</span> j<span style="color:#f92672">--)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 작거나 같다면 shift 연산을 수행하지 않아도됨.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>input<span style="color:#f92672">[</span>j<span style="color:#f92672">-</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">&lt;=</span> current<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// shift연산 수행
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            input<span style="color:#f92672">[</span>j<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> input<span style="color:#f92672">[</span>j <span style="color:#f92672">-</span> 1<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 삽입위치를 찾았다면 값을 넣어준다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>input<span style="color:#f92672">[</span>j <span style="color:#f92672">-</span> 1<span style="color:#f92672">]</span> <span style="color:#f92672">&gt;</span> current <span style="color:#f92672">||</span> j <span style="color:#f92672">-</span> 1 <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                input<span style="color:#f92672">[</span>j <span style="color:#f92672">-</span> 1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> current<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>상기 3개의 알고리즘은 모두 O(n<sup>2</sup>))의 시간복잡도를 가지고 있다.
+말그대로 &ldquo;빠른&rdquo; 정렬 알고리즘인 퀵 정렬은 평균 시간복잡도 O(nlogn)을 가진다.</p>
+<h3 id="퀵-정렬">퀵 정렬</h3>
+<ul>
+<li><code>pivot(기준값)</code>을 중심으로 계속 데이터를 2개의 집합으로 나누면서 정렬하는 분할-정복 알고리즘이다.</li>
+</ul>
+<p>퀵 정렬은 앞선 n<sup>2</sup> 알고리즘들보다 상대적으로 직관적으로 이해하기는 어렵다.</p>
+<figure>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9c/Quicksort-example.gif">
+        <figcaption>[1]퀵 정렬 알고리즘</figcaption>
+</figure>
+<ol>
+<li>
+<p>데이터를 분할하는 pivot을 설정한다.</p>
+</li>
+<li>
+<p>pivot을 기준으로 다음 과정을 거쳐 데이터를 2개의 집합으로 분리한다.</p>
+</li>
+<li>
+<p>start 포인터가 가르키는 데이터가 pivot이 가르키는 데이터보다 작으면 start를 오른쪽으로 1칸 이동한다.</p>
+</li>
+<li>
+<p>end 포인터가 가르키는 데이터가 pivot이 가르키는 데이터보다 크면 end를 왼쪽으로 1칸 이동한다.</p>
+</li>
+<li>
+<p>start가 가르키는 데이터가 pivot이 가르키는 데이터보다 크고, end가 가르키는 데이터가 pivot보다 작으면
+start,end 가 각각 가르키는 데이터를 swap하고 start는 오른쪽, end는 왼쪽으로 1칸씩 이동한다.</p>
+</li>
+<li>
+<p>start와 end가 만날떄까지 3~5과정을 반복한다.</p>
+</li>
+<li>
+<p>start와 end가 만나면 만난 지점에서 가르키는 데이터와 pivot이 가르키는 데이터를 비교하여
+pivot이 가르키는 데이터가 크면 만난 지점의 오른쪽에, 작으면 만난 지점의 왼쪽에 pivot이 가르키는 데이터를 삽입한다.</p>
+</li>
+<li>
+<p>pivot을 기준으로 왼/오른쪽 집합을 나누고, 분리 집합에서 다시끔 pivot을 선정한다. 1~7번 과정을 반복한다.</p>
+</li>
+</ol>
+<h3 id="reference">Reference</h3>
+<p>[1] <a href="https://upload.wikimedia.org/wikipedia/commons/9/9c/Quicksort-example.gif">https://upload.wikimedia.org/wikipedia/commons/9/9c/Quicksort-example.gif</a></p>
+<div style="margin-top:100px;"></div>
+<script src="https://utteranc.es/client.js"
+        repo="csbiy/csbiy.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script></section>
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+        
+        <a
+                class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+                href="https://csbiy.github.io/post/apache_kafka_advantage/"
+        ><span class="mr-1.5">←</span><span>카프카의 주요 개념</span></a
+        >
+        
+        
+        <a
+                class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+                href="https://csbiy.github.io/post/%ED%95%A8%EC%88%98%ED%98%95_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"
+        ><span>함수형 프로그래밍</span><span class="ml-1.5">→</span></a
+        >
+        
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+</article>
+
+
+      
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60 border-top"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="https://csbiy.github.io/">cs log</a>
+  </div>
+  <div>
+    Contact : katd216@gmail.com
+  </div>
+  
+</footer>
+
+
+  <script>
+    
+    if(location.href.endsWith('writing')){
+      document.querySelector('#aboutme').style.display="None";
+      document.querySelectorAll('.postings').forEach((e)=>e.style.display="block");
+    }
+    document.querySelector("#writings").addEventListener('click',(e)=>{
+      location.href = '/?writing'
+    })
+
+    
+  </script>
+  </body>
+</html>
