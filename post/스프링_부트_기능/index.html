@@ -1,0 +1,422 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Spring Boot 편의 기능 정리  - cs log</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Spring Boot? 기존 스프링 프레임워크에서 애플리케이션 시작을 위한 복잡한 설정 과정은 스프링 부트가 해결 Spring Boot란 Spring Framework를 편하게 사용할 수 있도록 여러 기능을 제공해주는 일종의 tool이다. Spring Boot의 주요기능은 다음과 같다.
+Spring Boot의 주요 기능 WAS : tomcat 같은 웹 서버를 내장해서 별도의 웹서버를 설치하지 않아도 된다. 라이브러리 관리 기능: starter 종속성을 제공해주어, 라이브러리 버전간 충돌이 발생하지 않게 빌드 구성을 해준다. 예를 들면 spring-boot-start-{library} 형식으로 web, data-jpa 와 관련된 모든 라이브러리를 같이 떙겨줄 수 있다." />
+  <meta name="author" content="cs" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://csbiy.github.io/main.min.css" />
+  <link rel="preload stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"/>
+
+  <link rel="preload stylesheet" href="./../../assets/custom.css"/>
+  
+  <script
+    defer
+    src="https://csbiy.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="https://csbiy.github.io/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/b60e88df064971276ea7059122b3ebaa?s=160&amp;d=identicon" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="https://csbiy.github.io/github.svg" />
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="https://csbiy.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://csbiy.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.118.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="Spring Boot 편의 기능 정리 ">
+<meta itemprop="description" content="sample"><meta itemprop="datePublished" content="2022-03-21T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-03-21T00:00:00+00:00" />
+<meta itemprop="wordCount" content="455">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Boot 편의 기능 정리 "/>
+<meta name="twitter:description" content="sample"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold head"
+      href="https://csbiy.github.io/"
+      >cs log</a>
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden "
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    console.log("he")
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+    
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal head"
+        href=""
+        ></a
+      >
+      
+      <a id="writings"
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal head"
+        >writings</a
+      >
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/csbiy"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 dark:prose-invert"
+    >
+      
+
+<article>
+    <header class="mb-16">
+        <h1 class="!my-0 pb-2.5">Spring Boot 편의 기능 정리 </h1>
+
+        
+        <div class="text-sm antialiased opacity-60">
+            
+            <time>Mar 21, 2022</time>
+            
+            
+            
+            
+            <span class="mx-1">&middot;</span>
+            <span>cs</span>
+            
+        </div>
+        
+    </header>
+
+    <section><h2 id="spring-boot">Spring Boot?</h2>
+<ul>
+<li>기존 스프링 프레임워크에서 애플리케이션 시작을 위한 복잡한 설정 과정은 스프링 부트가 해결</li>
+<li>Spring Boot란 Spring Framework를 편하게 사용할 수 있도록 여러 기능을 제공해주는 일종의 tool이다.</li>
+</ul>
+<p>Spring Boot의 주요기능은 다음과 같다.</p>
+<h2 id="spring-boot의-주요-기능">Spring Boot의 주요 기능</h2>
+<ol>
+<li>WAS : tomcat 같은 웹 서버를 내장해서 별도의 웹서버를 설치하지 않아도 된다.</li>
+<li>라이브러리 관리 기능: starter 종속성을 제공해주어, 라이브러리 버전간 충돌이 발생하지 않게 빌드 구성을 해준다.</li>
+</ol>
+<p>예를 들면 spring-boot-start-{library} 형식으로 web, data-jpa 와 관련된 모든 라이브러리를 같이 떙겨줄 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gradle" data-lang="gradle"><span style="display:flex;"><span>dependencies <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    implementation<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.springframework.boot:spring-boot-starter-data-jpa&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    implementation<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.springframework.boot:spring-boot-starter-web&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ol start="3">
+<li>자동구성(Auto-Configuration) : project 시작에 필요한 spring bean을 자동 등록해준다.</li>
+<li>외부설정 : 환경에 따라 달라져야 하는 외부 설정을 공통화하여 관리할 수 있다.</li>
+<li>프로덕션 준비 기능(일종의 애플리케이션 모니터링 지원): 모니터링을 위한 메트릭, 시스템 상태를 확인할 수 있는 기능을 추가로 제공해준다.</li>
+</ol>
+<figure>
+        <img src="https://i0.wp.com/www.dineshonjava.com/wp-content/uploads/2016/06/Spring-Boot-Starter.png?w=728&ssl=1">
+        <figcaption>[0]Spring Boot Starter Dependencies</figcaption>
+</figure>
+<h2 id="spring-boot-의-내장-was-tomcat">Spring Boot 의 내장 WAS (TOMCAT)</h2>
+<p>먼저 기존에 사용되던 방식은 Application 을 WAR로 빌드하고, 빌드한 WAR를
+톰캣서버의 /webapps/ROOT.war 파일명으로 복사해서 집어넣어서 실행시키는 방식이다.
+위 application 코드를 WAR 형태로 빌드한다. 참고로 WAR 형태는 다음과 같은 구조를 가지고 있다.</p>
+<pre tabindex="0"><code>WEB-INF
+    classes : 실행 클래스 모음
+    lib : 라이브러리 모음
+    web.xml 
+index.html : 정적리소스
+</code></pre><p>반면 Spring Boot의 경우 내장 톰캣을 포함. 즉 application code안에서 WAS 가 library로 내장되어 있다. 즉 따라서 코드를 JAR로 빌드하고, JAR를 원하는 위치에서 실행하기만 하면 WAS도 함께 실행된다.</p>
+<h2 id="spring-container-와-dispatcher-servlet">Spring Container 와 Dispatcher Servlet</h2>
+<p>Spring 에서는 Dispatcher Servlet 을 Servlet Container에 등록해서 요청을 처리한다. 다음과 같은 순서로 작업이 이루어진다.</p>
+<ol>
+<li>Spring Container 가 생성됨.</li>
+<li>Spring MVC Controller를 Spring Container에 Bean으로 등록한다.</li>
+<li>Dispatcher Servlet을 Servlet Container에 등록한다.</li>
+<li>Dispathcer Servlet이</li>
+</ol>
+<p>servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> javax.servlet<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Set<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ServletContainerInitializer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>Set<span style="color:#f92672">&lt;</span>Class<span style="color:#f92672">&lt;?&gt;&gt;</span> var1<span style="color:#f92672">,</span> ServletContext var2<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>spring에서는 내부적으로 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>Set<span style="color:#f92672">&lt;</span>Class<span style="color:#f92672">&lt;?&gt;&gt;</span> set<span style="color:#f92672">,</span> ServletContext servletContext<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    AnnotationConfigWebApplicationContext applicationContext <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AnnotationConfigWebApplicationContext<span style="color:#f92672">();</span> <span style="color:#f92672">--</span>1
+</span></span><span style="display:flex;"><span>    applicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">register</span><span style="color:#f92672">(</span><span style="color:#75715e">/*빈 설정클래스*/</span><span style="color:#f92672">);</span> <span style="color:#f92672">--</span>2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// spring mvc dispatcher servlet 생성 : spring application context를 주입받는다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    DispatcherServlet dispatcher <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DispatcherServlet<span style="color:#f92672">(</span>applicationContext<span style="color:#f92672">);</span> <span style="color:#f92672">--</span>3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ServletRegistration<span style="color:#f92672">.</span><span style="color:#a6e22e">Dynamic</span> servlet <span style="color:#f92672">=</span> servletContext<span style="color:#f92672">.</span><span style="color:#a6e22e">addServlet</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dispatcherServlet&#34;</span><span style="color:#f92672">,</span> dispatcher<span style="color:#f92672">);</span>  <span style="color:#f92672">--</span>4
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    servlet<span style="color:#f92672">.</span><span style="color:#a6e22e">addMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/*&#34;</span><span style="color:#f92672">);</span> <span style="color:#f92672">--</span>5
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>각 코드별로 하는 역할을 정리하면 다음과 같다.</p>
+<ol>
+<li>Spring Application Context 생성</li>
+<li>Application Context에 Spring bean 설정 정보를 가진 클래스를 등록</li>
+<li>HttpServlet의 구현체인 Dispatcher Servlet 에 Spring Application Context를 주입한다.</li>
+<li>Dispathcer Servlet을 Servlet Container에 등록한다.</li>
+<li>Dispatcher Servlet이 받을 URL 경로를 매핑한다.</li>
+</ol>
+<p>Dispatcher Servlet에 HTTP 요청이 들어오면 Spring Container에 들어있는 Controller Bean중에서 URL을 보고 적합한 Bean을 골라 호출한다.
+( Spring의 Dispatcher Servlet은 Front Controller Design Pattern[]을 따른다)</p>
+<p><code>WebApplicationInitializer</code>클래스를 사용하면 조금 더 편리하게 servlet 초기화 코드를 작성할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.WebApplicationInitializer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringMvcServletInitializer</span> <span style="color:#66d9ef">implements</span> WebApplicationInitializer <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>ServletContext servletContext<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>기존 <code>ServletContainerInitializer</code>클래스의 경우는 <code>/META-INF/services/jakarta.servlet.ServletContainerInitializer</code>라는 파일명으로 서블릿 컨테이너 초기화 로직이 들어 있는 클래스명을 지정해준다.</p>
+<p>사실 spring 에서 제공해주는 <code>WebApplicationInitializer</code>클래스의 경우에도 내부적으로는 동일한 로직을 가지고 있다.</p>
+<p>똑같이 <code>/META-INF/services/jakarta.servlet.ServletContainerInitializer</code> 경로에 서블릿 컨테이너 초기화 로직이 들어 있는 클래스명을 지정해주는데,</p>
+<p>다만</p>
+<h3 id="reference">Reference</h3>
+<p>[0] <a href="https://www.dineshonjava.com/essentials-key-components-and-internals-of-spring-boot-framework/">https://www.dineshonjava.com/essentials-key-components-and-internals-of-spring-boot-framework/</a></p>
+<div style="margin-top:100px;"></div>
+<script src="https://utteranc.es/client.js"
+        repo="csbiy/csbiy.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script></section>
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+        
+        
+        <a
+                class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+                href="https://csbiy.github.io/post/apache_kafka_advantage/"
+        ><span>카프카의 주요 개념</span><span class="ml-1.5">→</span></a
+        >
+        
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+</article>
+
+
+      
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60 border-top"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="https://csbiy.github.io/">cs log</a>
+  </div>
+  <div>
+    Contact : katd216@gmail.com
+  </div>
+  
+</footer>
+
+
+  <script>
+    
+    if(location.href.endsWith('writing')){
+      document.querySelector('#aboutme').style.display="None";
+      document.querySelectorAll('.postings').forEach((e)=>e.style.display="block");
+    }
+    document.querySelector("#writings").addEventListener('click',(e)=>{
+      location.href = '/?writing'
+    })
+
+    
+  </script>
+  </body>
+</html>
