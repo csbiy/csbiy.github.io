@@ -6,7 +6,19 @@
     <description>Recent content in Posts on cs log</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://csbiy.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://csbiy.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring Dispatcher Servlet의 작동방식</title>
+      <link>https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_dispatcher_servlet/</link>
+      <pubDate>Fri, 01 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_dispatcher_servlet/</guid>
+      <description>Spring Container 와 Dispatcher Servlet Spring 에서는 Dispatcher Servlet 을 Servlet Container에 등록해서 요청을 처리한다.
+servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.
+package javax.servlet; import java.util.Set; public interface ServletContainerInitializer { void onStartup(Set&amp;lt;Class&amp;lt;?&amp;gt;&amp;gt; var1, ServletContext var2) throws ServletException; } spring에서는 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다.
+@Override public void onStartup(Set&amp;lt;Class&amp;lt;?&amp;gt;&amp;gt; set, ServletContext servletContext) throws ServletException { AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext(); --1 applicationContext.register(/*빈 설정클래스*/); --2 // spring mvc dispatcher servlet 생성 : spring application context를 주입받는다.</description>
+    </item>
+    
     <item>
       <title>Spring Boot 편의 기능 정리 -  </title>
       <link>https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_%EB%B6%80%ED%8A%B8_%EA%B8%B0%EB%8A%A5/</link>
@@ -15,18 +27,6 @@
       <guid>https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_%EB%B6%80%ED%8A%B8_%EA%B8%B0%EB%8A%A5/</guid>
       <description>Spring Boot? 기존 스프링 프레임워크에서 애플리케이션 시작을 위한 복잡한 설정 과정은 스프링 부트가 해결 Spring Boot란 Spring Framework를 편하게 사용할 수 있도록 여러 기능을 제공해주는 일종의 tool이다. Spring Boot의 주요기능은 다음과 같다.
 Spring Boot의 주요 기능 WAS : tomcat 같은 웹 서버를 내장해서 별도의 웹서버를 설치하지 않아도 된다. 라이브러리 관리 기능: starter 종속성을 제공해주어, 라이브러리 버전간 충돌이 발생하지 않게 빌드 구성을 해준다. 예를 들면 spring-boot-start-{library} 형식으로 web, data-jpa 와 관련된 모든 라이브러리를 같이 떙겨줄 수 있다.</description>
-    </item>
-    
-    <item>
-      <title>Spring Dispatcher Servlet의 작동방식</title>
-      <link>https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_dispatcher_servlet/</link>
-      <pubDate>Mon, 21 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_dispatcher_servlet/</guid>
-      <description>Spring Container 와 Dispatcher Servlet Spring 에서는 Dispatcher Servlet 을 Servlet Container에 등록해서 요청을 처리한다.
-servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.
-package javax.servlet; import java.util.Set; public interface ServletContainerInitializer { void onStartup(Set&amp;lt;Class&amp;lt;?&amp;gt;&amp;gt; var1, ServletContext var2) throws ServletException; } spring에서는 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다.
-@Override public void onStartup(Set&amp;lt;Class&amp;lt;?&amp;gt;&amp;gt; set, ServletContext servletContext) throws ServletException { AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext(); --1 applicationContext.register(/*빈 설정클래스*/); --2 // spring mvc dispatcher servlet 생성 : spring application context를 주입받는다.</description>
     </item>
     
     <item>
