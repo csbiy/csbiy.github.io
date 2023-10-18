@@ -1,0 +1,405 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html
+  class="not-ready lg:text-base"
+  style="--bg: #faf8f1"
+  lang="en-us"
+>
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+
+  
+  <title>Spring Dispatcher Servlet의 작동방식 - cs log</title>
+
+  
+  <meta name="theme-color" />
+
+  
+  
+  
+  <meta name="description" content="Spring Container 와 Dispatcher Servlet Spring 에서는 Dispatcher Servlet 을 Servlet Container에 등록해서 요청을 처리한다.
+servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.
+package javax.servlet; import java.util.Set; public interface ServletContainerInitializer { void onStartup(Set&lt;Class&lt;?&gt;&gt; var1, ServletContext var2) throws ServletException; } spring에서는 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다.
+@Override public void onStartup(Set&lt;Class&lt;?&gt;&gt; set, ServletContext servletContext) throws ServletException { AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext(); --1 applicationContext.register(/*빈 설정클래스*/); --2 // spring mvc dispatcher servlet 생성 : spring application context를 주입받는다." />
+  <meta name="author" content="cs" />
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="preload stylesheet" as="style" href="https://csbiy.github.io/main.min.css" />
+  <link rel="preload stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"/>
+
+  <link rel="preload stylesheet" href="./../../assets/custom.css"/>
+  
+  <script
+    defer
+    src="https://csbiy.github.io/highlight.min.js"
+    onload="hljs.initHighlightingOnLoad();"
+  ></script>
+  
+
+  
+   
+  <link rel="preload" as="image" href="https://csbiy.github.io/theme.png" />
+
+  
+  
+  
+  <link rel="preload" as="image" href="https://www.gravatar.com/avatar/b60e88df064971276ea7059122b3ebaa?s=160&amp;d=identicon" />
+  
+  
+
+  
+  <link rel="preload" as="image" href="https://csbiy.github.io/github.svg" />
+  
+  
+
+  
+  
+
+  
+  <link rel="icon" href="https://csbiy.github.io/favicon.ico" />
+  <link rel="apple-touch-icon" href="https://csbiy.github.io/apple-touch-icon.png" />
+
+  
+  <meta name="generator" content="Hugo 0.118.2">
+
+  
+  
+
+  
+  
+  
+  
+  
+  <meta itemprop="name" content="Spring Dispatcher Servlet의 작동방식">
+<meta itemprop="description" content="sample"><meta itemprop="datePublished" content="2022-03-21T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-03-21T00:00:00+00:00" />
+<meta itemprop="wordCount" content="287">
+<meta itemprop="keywords" content="" />
+  
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring Dispatcher Servlet의 작동방식"/>
+<meta name="twitter:description" content="sample"/>
+
+  
+  
+</head>
+
+  <body class="text-black duration-200 ease-out dark:text-white">
+    <header class="mx-auto flex h-[4.5rem] max-w-3xl px-8 lg:justify-center">
+  <div class="relative z-50 mr-auto flex items-center">
+    <a
+      class="-translate-x-[1px] -translate-y-[1px] text-2xl font-semibold head"
+      href="https://csbiy.github.io/"
+      >cs log</a>
+    <div
+      class="btn-dark text-[0] ml-4 h-6 w-6 shrink-0 cursor-pointer [background:url(./theme.png)_left_center/_auto_theme('spacing.6')_no-repeat] [transition:_background-position_0.4s_steps(5)] dark:[background-position:right]"
+      role="button"
+      aria-label="Dark"
+    ></div>
+  </div>
+
+  <div
+    class="btn-menu relative z-50 -mr-8 flex h-[4.5rem] w-[5rem] shrink-0 cursor-pointer flex-col items-center justify-center gap-2.5 lg:hidden "
+    role="button"
+    aria-label="Menu"
+  ></div>
+
+  
+  <script>
+    
+    const htmlClass = document.documentElement.classList;
+    setTimeout(() => {
+      htmlClass.remove('not-ready');
+    }, 10);
+
+    
+    const btnMenu = document.querySelector('.btn-menu');
+    btnMenu.addEventListener('click', () => {
+      htmlClass.toggle('open');
+    });
+
+    console.log("he")
+    
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    const lightBg = '#faf8f1'.replace(/"/g, '');
+    const setDark = (isDark) => {
+      metaTheme.setAttribute('content', isDark ? '#000' : lightBg);
+      htmlClass[isDark ? 'add' : 'remove']('dark');
+      localStorage.setItem('dark', isDark);
+    };
+
+    
+    const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (htmlClass.contains('dark')) {
+      setDark(true);
+    } else {
+      const darkVal = localStorage.getItem('dark');
+      setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+    }
+
+    
+    darkScheme.addEventListener('change', (event) => {
+      setDark(event.matches);
+    });
+
+    
+    const btnDark = document.querySelector('.btn-dark');
+    btnDark.addEventListener('click', () => {
+      setDark(localStorage.getItem('dark') !== 'true');
+    });
+    
+  </script>
+
+  <div
+    class="nav-wrapper fixed inset-x-0 top-full z-40 flex h-full select-none flex-col justify-center pb-16 duration-200 dark:bg-black lg:static lg:h-auto lg:flex-row lg:!bg-transparent lg:pb-0 lg:transition-none"
+  >
+    
+    
+    <nav class="lg:ml-12 lg:flex lg:flex-row lg:items-center lg:space-x-6">
+      
+      <a
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal head"
+        href=""
+        ></a
+      >
+      
+      <a id="writings"
+        class="block text-center text-2xl leading-[5rem] lg:text-base lg:font-normal head"
+        >writings</a
+      >
+    </nav>
+    
+
+    
+    <nav
+      class="mt-12 flex justify-center space-x-10 dark:invert lg:ml-12 lg:mt-0 lg:items-center lg:space-x-6"
+    >
+      
+      <a
+        class="h-8 w-8 text-[0] [background:var(--url)_center_center/cover_no-repeat] lg:h-6 lg:w-6"
+        style="--url: url(./github.svg)"
+        href="https://github.com/csbiy"
+        target="_blank"
+        rel="me"
+      >
+        github
+      </a>
+      
+    </nav>
+    
+  </div>
+</header>
+
+
+    <main
+      class="prose prose-neutral relative mx-auto min-h-[calc(100%-9rem)] max-w-3xl px-8 dark:prose-invert"
+    >
+      
+
+<article>
+    <header class="mb-16">
+        <h1 class="!my-0 pb-2.5">Spring Dispatcher Servlet의 작동방식</h1>
+
+        
+        <div class="text-sm antialiased opacity-60">
+            
+            <time>Mar 21, 2022</time>
+            
+            
+            
+            
+            <span class="mx-1">&middot;</span>
+            <span>cs</span>
+            
+        </div>
+        
+    </header>
+
+    <section><h2 id="spring-container-와-dispatcher-servlet">Spring Container 와 Dispatcher Servlet</h2>
+<p>Spring 에서는 Dispatcher Servlet 을 Servlet Container에 등록해서 요청을 처리한다.</p>
+<p>servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> javax.servlet<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Set<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ServletContainerInitializer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>Set<span style="color:#f92672">&lt;</span>Class<span style="color:#f92672">&lt;?&gt;&gt;</span> var1<span style="color:#f92672">,</span> ServletContext var2<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>spring에서는 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>Set<span style="color:#f92672">&lt;</span>Class<span style="color:#f92672">&lt;?&gt;&gt;</span> set<span style="color:#f92672">,</span> ServletContext servletContext<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    AnnotationConfigWebApplicationContext applicationContext <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AnnotationConfigWebApplicationContext<span style="color:#f92672">();</span> <span style="color:#f92672">--</span>1
+</span></span><span style="display:flex;"><span>    applicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">register</span><span style="color:#f92672">(</span><span style="color:#75715e">/*빈 설정클래스*/</span><span style="color:#f92672">);</span> <span style="color:#f92672">--</span>2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// spring mvc dispatcher servlet 생성 : spring application context를 주입받는다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    DispatcherServlet dispatcher <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DispatcherServlet<span style="color:#f92672">(</span>applicationContext<span style="color:#f92672">);</span> <span style="color:#f92672">--</span>3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ServletRegistration<span style="color:#f92672">.</span><span style="color:#a6e22e">Dynamic</span> servlet <span style="color:#f92672">=</span> servletContext<span style="color:#f92672">.</span><span style="color:#a6e22e">addServlet</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dispatcherServlet&#34;</span><span style="color:#f92672">,</span> dispatcher<span style="color:#f92672">);</span>  <span style="color:#f92672">--</span>4
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    servlet<span style="color:#f92672">.</span><span style="color:#a6e22e">addMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/*&#34;</span><span style="color:#f92672">);</span> <span style="color:#f92672">--</span>5
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>각 코드별로 하는 역할을 정리하면 다음과 같다.</p>
+<ol>
+<li>Spring Application Context 생성</li>
+<li>Application Context에 Spring bean 설정 정보를 가진 클래스를 등록</li>
+<li>HttpServlet의 구현체인 Dispatcher Servlet 에 Spring Application Context를 주입한다.</li>
+<li>Dispathcer Servlet을 Servlet Container에 등록한다.</li>
+<li>Dispatcher Servlet이 받을 URL 경로를 매핑한다.</li>
+</ol>
+<p>Dispatcher Servlet에 HTTP 요청이 들어오면 Spring Container에 들어있는 Controller Bean중에서 URL을 보고 적합한 Bean을 골라 호출한다.
+( Spring의 Dispatcher Servlet은 Front Controller Design Pattern을 따른다)</p>
+<p><code>WebApplicationInitializer</code>클래스를 사용하면 조금 더 편리하게 servlet 초기화 코드를 작성할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.WebApplicationInitializer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringMvcServletInitializer</span> <span style="color:#66d9ef">implements</span> WebApplicationInitializer <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>ServletContext servletContext<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>기존 <code>ServletContainerInitializer</code>클래스의 경우는 <code>/META-INF/services/jakarta.servlet.ServletContainerInitializer</code>라는 파일명으로 서블릿 컨테이너 초기화 로직이 들어 있는 클래스명을 지정해준다.</p>
+<p>spring 에서 제공해주는 <code>WebApplicationInitializer</code>클래스의 경우에도 내부적으로는 동일한 로직을 가지고 있다.</p>
+<p>똑같이 <code>/META-INF/services/jakarta.servlet.ServletContainerInitializer</code> 경로에 서블릿 컨테이너 초기화 로직이 들어 있는 클래스명을 지정해주는데,</p>
+<p><code>WebApplicationInitializer</code>의 구현체인  <code>SpringBootServletInitializer</code>가 해당 파일에 적혀있다. 즉 <code>SpringBootServletInitializer</code> 클래스가 사용자[개발자]가 구현한 WebApplicationInitializer 를 호출해준다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.springframework.web.context.WebApplicationContext<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SpringBootServletInitializer</span> <span style="color:#66d9ef">implements</span> WebApplicationInitializer <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="정리">정리</h2>
+<ul>
+<li>
+<p>Servlet Container는 Dispatcher Servlet이라는 Spring Application Context에 대한 참조값을 가지고 있는 Servlet 객체를 초기화 시점에 등록한다.</p>
+</li>
+<li>
+<p>등록된 Dispather Servlet은 일종의 Front Controller로서 동작한다.</p>
+</li>
+<li>
+<p>Spring Container 는 Dispatcher Servlet을 통해서 Application Context에 등록되어는 Controller를 사용자의 HTTP Request맞게 호출해준다.</p>
+</li>
+</ul>
+<div style="margin-top:100px;"></div>
+<script src="https://utteranc.es/client.js"
+        repo="csbiy/csbiy.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script></section>
+
+    
+    
+
+    
+    
+    
+    
+    <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+        
+        <a
+                class="flex w-1/2 items-center rounded-l-md p-6 pr-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+                href="https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_%EB%B6%80%ED%8A%B8_%EA%B8%B0%EB%8A%A5/"
+        ><span class="mr-1.5">←</span><span>Spring Boot 편의 기능 정리 -  </span></a
+        >
+        
+        
+        <a
+                class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
+                href="https://csbiy.github.io/post/apache_kafka_advantage/"
+        ><span>카프카의 주요 개념</span><span class="ml-1.5">→</span></a
+        >
+        
+    </nav>
+    
+    
+
+    
+    
+
+    
+    
+</article>
+
+
+      
+    </main>
+
+    <footer
+  class="opaco mx-auto flex h-[4.5rem] max-w-3xl items-center px-8 text-[0.9em] opacity-60 border-top"
+>
+  <div class="mr-auto">
+    &copy; 2023
+    <a class="link" href="https://csbiy.github.io/">cs log</a>
+  </div>
+  <div>
+    Contact : katd216@gmail.com
+  </div>
+  
+</footer>
+
+
+  <script>
+    
+    if(location.href.endsWith('writing')){
+      document.querySelector('#aboutme').style.display="None";
+      document.querySelectorAll('.postings').forEach((e)=>e.style.display="block");
+    }
+    document.querySelector("#writings").addEventListener('click',(e)=>{
+      location.href = '/?writing'
+    })
+
+    
+  </script>
+  </body>
+</html>
