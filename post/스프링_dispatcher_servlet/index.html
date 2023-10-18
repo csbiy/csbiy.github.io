@@ -61,9 +61,8 @@
   
   
   <meta name="description" content="Spring Container 와 Dispatcher Servlet Spring 에서는 Dispatcher Servlet 을 Servlet Container에 등록해서 요청을 처리한다.
-servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.
-package javax.servlet; import java.util.Set; public interface ServletContainerInitializer { void onStartup(Set&lt;Class&lt;?&gt;&gt; var1, ServletContext var2) throws ServletException; } spring에서는 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다.
-@Override public void onStartup(Set&lt;Class&lt;?&gt;&gt; set, ServletContext servletContext) throws ServletException { AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext(); --1 applicationContext.register(/*빈 설정클래스*/); --2 // spring mvc dispatcher servlet 생성 : spring application context를 주입받는다." />
+servlet 이란 TCP/IP 연결, HTTP Message 파싱 , 응답 등 개발자가 HTTP 스펙을 매우 편리하게 사용할 수 있도록 웹 요청, 웹 응답 객체를 제공해주는 자바 서버측 표준 클래스 servlet container란 WAS 안에서 servlet 생명주기(생성/초기화/호출/종료) 관리. 기본적으로 싱글톤으로 관리된다. servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.
+package javax.servlet; import java.util.Set; public interface ServletContainerInitializer { void onStartup(Set&lt;Class&lt;?&gt;&gt; var1, ServletContext var2) throws ServletException; } spring에서는 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다." />
   <meta name="author" content="cs" />
   
 
@@ -122,7 +121,7 @@ package javax.servlet; import java.util.Set; public interface ServletContainerIn
   <meta itemprop="name" content="Spring Dispatcher Servlet의 작동방식">
 <meta itemprop="description" content="sample"><meta itemprop="datePublished" content="2022-04-01T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-04-01T00:00:00+00:00" />
-<meta itemprop="wordCount" content="287">
+<meta itemprop="wordCount" content="325">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
@@ -266,6 +265,10 @@ package javax.servlet; import java.util.Set; public interface ServletContainerIn
 
     <section><h2 id="spring-container-와-dispatcher-servlet">Spring Container 와 Dispatcher Servlet</h2>
 <p>Spring 에서는 Dispatcher Servlet 을 Servlet Container에 등록해서 요청을 처리한다.</p>
+<ul>
+<li>servlet 이란 TCP/IP 연결, HTTP Message 파싱 , 응답 등  개발자가 HTTP 스펙을 매우 편리하게 사용할 수 있도록 웹 요청, 웹 응답 객체를 제공해주는 자바 서버측 표준 클래스</li>
+<li>servlet container란 WAS 안에서 servlet 생명주기(생성/초기화/호출/종료) 관리. 기본적으로 싱글톤으로 관리된다.</li>
+</ul>
 <p>servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> javax.servlet<span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>
@@ -277,16 +280,16 @@ package javax.servlet; import java.util.Set; public interface ServletContainerIn
 </span></span></code></pre></div><p>spring에서는 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#a6e22e">@Override</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onStartup</span><span style="color:#f92672">(</span>Set<span style="color:#f92672">&lt;</span>Class<span style="color:#f92672">&lt;?&gt;&gt;</span> set<span style="color:#f92672">,</span> ServletContext servletContext<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> ServletException <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    AnnotationConfigWebApplicationContext applicationContext <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AnnotationConfigWebApplicationContext<span style="color:#f92672">();</span> <span style="color:#f92672">--</span>1
-</span></span><span style="display:flex;"><span>    applicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">register</span><span style="color:#f92672">(</span><span style="color:#75715e">/*빈 설정클래스*/</span><span style="color:#f92672">);</span> <span style="color:#f92672">--</span>2
-</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    AnnotationConfigWebApplicationContext applicationContext <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AnnotationConfigWebApplicationContext<span style="color:#f92672">();</span> <span style="color:#75715e">//1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    applicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">register</span><span style="color:#f92672">(</span><span style="color:#75715e">/*빈 설정클래스*/</span><span style="color:#f92672">);</span> <span style="color:#75715e">//2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// spring mvc dispatcher servlet 생성 : spring application context를 주입받는다.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    DispatcherServlet dispatcher <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DispatcherServlet<span style="color:#f92672">(</span>applicationContext<span style="color:#f92672">);</span> <span style="color:#f92672">--</span>3
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    ServletRegistration<span style="color:#f92672">.</span><span style="color:#a6e22e">Dynamic</span> servlet <span style="color:#f92672">=</span> servletContext<span style="color:#f92672">.</span><span style="color:#a6e22e">addServlet</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dispatcherServlet&#34;</span><span style="color:#f92672">,</span> dispatcher<span style="color:#f92672">);</span>  <span style="color:#f92672">--</span>4
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    servlet<span style="color:#f92672">.</span><span style="color:#a6e22e">addMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/*&#34;</span><span style="color:#f92672">);</span> <span style="color:#f92672">--</span>5
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    DispatcherServlet dispatcher <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DispatcherServlet<span style="color:#f92672">(</span>applicationContext<span style="color:#f92672">);</span> <span style="color:#75715e">//3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    ServletRegistration<span style="color:#f92672">.</span><span style="color:#a6e22e">Dynamic</span> servlet <span style="color:#f92672">=</span> servletContext<span style="color:#f92672">.</span><span style="color:#a6e22e">addServlet</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dispatcherServlet&#34;</span><span style="color:#f92672">,</span> dispatcher<span style="color:#f92672">);</span>  <span style="color:#75715e">//4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    servlet<span style="color:#f92672">.</span><span style="color:#a6e22e">addMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/*&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">//5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><p>각 코드별로 하는 역할을 정리하면 다음과 같다.</p>
 <ol>
 <li>Spring Application Context 생성</li>
@@ -351,7 +354,7 @@ package javax.servlet; import java.util.Set; public interface ServletContainerIn
         <a
                 class="ml-auto flex w-1/2 items-center justify-end rounded-r-md p-6 pl-3 font-semibold no-underline hover:bg-black/[2%] dark:hover:bg-white/[3%]"
                 href="https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_%EB%B6%80%ED%8A%B8_%EA%B8%B0%EB%8A%A5/"
-        ><span>Spring Boot 편의 기능 정리 -  </span><span class="ml-1.5">→</span></a
+        ><span>Spring Boot 편의 기능 정리 (1) - 냬장 웹서버</span><span class="ml-1.5">→</span></a
         >
         
     </nav>

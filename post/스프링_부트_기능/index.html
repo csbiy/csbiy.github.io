@@ -52,7 +52,7 @@
   />
 
   
-  <title>Spring Boot 편의 기능 정리 -   - cs log</title>
+  <title>Spring Boot 편의 기능 정리 (1) - 냬장 웹서버 - cs log</title>
 
   
   <meta name="theme-color" />
@@ -117,14 +117,14 @@ Spring Boot의 주요 기능 WAS : tomcat 같은 웹 서버를 내장해서 별�
   
   
   
-  <meta itemprop="name" content="Spring Boot 편의 기능 정리 -  ">
+  <meta itemprop="name" content="Spring Boot 편의 기능 정리 (1) - 냬장 웹서버">
 <meta itemprop="description" content="sample"><meta itemprop="datePublished" content="2022-03-21T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2022-03-21T00:00:00+00:00" />
-<meta itemprop="wordCount" content="205">
+<meta itemprop="wordCount" content="247">
 <meta itemprop="keywords" content="" />
   
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Spring Boot 편의 기능 정리 -  "/>
+<meta name="twitter:title" content="Spring Boot 편의 기능 정리 (1) - 냬장 웹서버"/>
 <meta name="twitter:description" content="sample"/>
 
   
@@ -245,7 +245,7 @@ Spring Boot의 주요 기능 WAS : tomcat 같은 웹 서버를 내장해서 별�
 
 <article>
     <header class="mb-16">
-        <h1 class="!my-0 pb-2.5">Spring Boot 편의 기능 정리 -  </h1>
+        <h1 class="!my-0 pb-2.5">Spring Boot 편의 기능 정리 (1) - 냬장 웹서버</h1>
 
         
         <div class="text-sm antialiased opacity-60">
@@ -287,18 +287,28 @@ Spring Boot의 주요 기능 WAS : tomcat 같은 웹 서버를 내장해서 별�
         <img src="https://i0.wp.com/www.dineshonjava.com/wp-content/uploads/2016/06/Spring-Boot-Starter.png?w=728&ssl=1">
         <figcaption>[0]Spring Boot Starter Dependencies</figcaption>
 </figure>
-<h2 id="spring-boot-의-내장-was-tomcat">Spring Boot 의 내장 WAS (TOMCAT)</h2>
-<p>먼저 기존에 사용되던 방식은 Application 을 WAR로 빌드하고, 빌드한 WAR를
-톰캣서버의 /webapps/ROOT.war 파일명으로 복사해서 집어넣어서 실행시키는 방식이다.
-위 application 코드를 WAR 형태로 빌드한다. 참고로 WAR 형태는 다음과 같은 구조를 가지고 있다.</p>
+<h2 id="spring-boot-도입-이전의-war-배포-방식">Spring Boot 도입 이전의 WAR 배포 방식</h2>
+<p>먼저 기존에 사용되던 방식은 Application 을 WAR로 빌드하고,
+빌드한 WAR를 톰캣서버의 /webapps/ROOT.war 파일명으로 복사해서 집어넣어서 실행시키는 방식이다.</p>
+<p>위 application 코드를 WAR 형태로 빌드한다. 참고로 WAR 형태는 다음과 같은 구조를 가지고 있다.</p>
 <pre tabindex="0"><code>WEB-INF
     classes : 실행 클래스 모음
     lib : 라이브러리 모음
     web.xml 
 index.html : 정적리소스
-</code></pre><p>반면 Spring Boot의 경우 내장 톰캣을 포함. 즉 application code안에서 WAS 가 library로 내장되어 있다. 즉 따라서 코드를 JAR로 빌드하고, JAR를 원하는 위치에서 실행하기만 하면 WAS도 함께 실행된다.</p>
+</code></pre><h2 id="war-배포-방식의-단점">WAR 배포 방식의 단점</h2>
+<p>위와 같이 웹 어플리케이션 빌드 파일인 WAR 와 WAS가 분리되어 있는 구조에서는 다음과 같은 단점이 있다.</p>
+<ol>
+<li>WAS 별도 설치</li>
+<li>WAS-WAR간의 연동 설정 필요</li>
+<li>배포 과정의 복잡성, 즉 WAR에서 요구하는 파일 디렉토리 스펙대로 WAR파일을 배치시켜야 한다.</li>
+</ol>
+<h2 id="spring-boot의-내장-was-방식">Spring Boot의 내장 WAS 방식</h2>
+<p>반면 Spring Boot의 경우 내장 톰캣을 포함한다.
+application을 jar로 빌드하면, jar 안에 tomcat과 같은 WAS library가 포함되어 있다.
+즉 jar파일만 실행하면, WAS도 같이 실행되는 구조이다.</p>
 <h3 id="reference">Reference</h3>
-<p>[0] <a href="https://www.dineshonjava.com/essentials-key-components-and-internals-of-spring-boot-framework/">https://www.dineshonjava.com/essentials-key-components-and-internals-of-spring-boot-framework/</a></p>
+<p>[0] <a href="https://www.inflearn.com/roadmaps/373">https://www.inflearn.com/roadmaps/373</a></p>
 <div style="margin-top:100px;"></div>
 <script src="https://utteranc.es/client.js"
         repo="csbiy/csbiy.github.io"

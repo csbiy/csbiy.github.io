@@ -14,13 +14,12 @@
       
       <guid>https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_dispatcher_servlet/</guid>
       <description>Spring Container 와 Dispatcher Servlet Spring 에서는 Dispatcher Servlet 을 Servlet Container에 등록해서 요청을 처리한다.
-servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.
-package javax.servlet; import java.util.Set; public interface ServletContainerInitializer { void onStartup(Set&amp;lt;Class&amp;lt;?&amp;gt;&amp;gt; var1, ServletContext var2) throws ServletException; } spring에서는 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다.
-@Override public void onStartup(Set&amp;lt;Class&amp;lt;?&amp;gt;&amp;gt; set, ServletContext servletContext) throws ServletException { AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext(); --1 applicationContext.register(/*빈 설정클래스*/); --2 // spring mvc dispatcher servlet 생성 : spring application context를 주입받는다.</description>
+servlet 이란 TCP/IP 연결, HTTP Message 파싱 , 응답 등 개발자가 HTTP 스펙을 매우 편리하게 사용할 수 있도록 웹 요청, 웹 응답 객체를 제공해주는 자바 서버측 표준 클래스 servlet container란 WAS 안에서 servlet 생명주기(생성/초기화/호출/종료) 관리. 기본적으로 싱글톤으로 관리된다. servlet에서는 ServletContainerIntializer라는 servlet container 초기화 인터페이스를 제공해준다.
+package javax.servlet; import java.util.Set; public interface ServletContainerInitializer { void onStartup(Set&amp;lt;Class&amp;lt;?&amp;gt;&amp;gt; var1, ServletContext var2) throws ServletException; } spring에서는 이 servlet container 초기화 메소드를 통해서 spring container를 생성하고, 등록하는 작업을 수행한다.</description>
     </item>
     
     <item>
-      <title>Spring Boot 편의 기능 정리 -  </title>
+      <title>Spring Boot 편의 기능 정리 (1) - 냬장 웹서버</title>
       <link>https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_%EB%B6%80%ED%8A%B8_%EA%B8%B0%EB%8A%A5/</link>
       <pubDate>Mon, 21 Mar 2022 00:00:00 +0000</pubDate>
       
