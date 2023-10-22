@@ -19,7 +19,7 @@ package javax.servlet; import java.util.Set; public interface ServletContainerIn
     </item>
     
     <item>
-      <title>Spring Boot 편의 기능 정리 (1) - 냬장 웹서버</title>
+      <title>Spring Boot 편의 기능 정리 (1) - 내장 웹서버</title>
       <link>https://csbiy.github.io/post/%EC%8A%A4%ED%94%84%EB%A7%81_%EB%B6%80%ED%8A%B8_%EA%B8%B0%EB%8A%A5/</link>
       <pubDate>Mon, 21 Mar 2022 00:00:00 +0000</pubDate>
       
